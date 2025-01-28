@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTAURANTE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>MENU</h1>
+    
+    
+    <!-- Hamburguesas -->
+    <div class="menu-item">
+        <label for="tiposDeHamburguesas1">Hamburguesa Completa</label>
+        <select id="tiposDeHamburguesas1" data-precio="3.50">
+            <option value="3.50">Hamburguesa Completa</option>
+        </select>
+        <label for="cantidad1">CANTIDAD:</label> 
+        <input type="number" id="cantidad1" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultado1" readonly/>
+        <button onclick="aderezos('orderContainer1', 'hamburguesaCompleta')">SALSAS</button>
+        <div id="orderContainer1" class="burger-container"></div>
+    </div>
+
+    <div class="menu-item">
+        <label for="tiposDeHamburguesas2">Hamburguesa Sencilla</label>
+        <select id="tiposDeHamburguesas2" data-precio="2.50">
+            <option value="2.50">Hamburguesa Sencilla</option>
+        </select>
+        <label for="cantidad2">CANTIDAD:</label> 
+        <input type="number" id="cantidad2" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultado2" readonly/>
+        <button onclick="aderezos('orderContainer2', 'hamburguesaSencilla')">SALSAS</button>
+        <div id="orderContainer2" class="burger-container"></div>
+    </div>
+
+    <!-- Hot Dogs -->
+    <h1>HOT DOG</h1>
+    <div class="menu-item">
+        <label for="tiposDeHotdog1">Hot Dog Grande</label>
+        <select id="tiposDeHotdog1" data-precio="2.50">
+            <option value="2.50">Hot Dog Grande</option>
+        </select>
+        <label for="cantidadh1">CANTIDAD:</label> 
+        <input type="number" id="cantidadh1" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultadoh1" readonly/>
+        <button onclick="aderezos('orderContainerh1', 'hotDogGrande')">SALSAS</button>
+        <div id="orderContainerh1" class="hotdog-container"></div>
+    </div>
+    
+    <div class="menu-item">
+        <label for="tiposDeHotdog2">Hot Dog Mediano</label>
+        <select id="tiposDeHotdog2" data-precio="2.00">
+            <option value="2.00">Hot Dog Mediano</option>
+        </select>
+        <label for="cantidadh2">CANTIDAD:</label> 
+        <input type="number" id="cantidadh2" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultadoh2" readonly/>
+        <button onclick="aderezos('orderContainerh2', 'hotDogMediano')">SALSAS</button>
+        <div id="orderContainerh2" class="hotdog-container"></div>
+    </div>
+
+    <div class="menu-item">
+        <label for="tiposDeHotdog3">Hot Dog Pequeño</label>
+        <select id="tiposDeHotdog3" data-precio="1.50">
+            <option value="1.50">Hot Dog Pequeño</option>
+        </select>
+        <label for="cantidadh3">CANTIDAD:</label> 
+        <input type="number" id="cantidadh3" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultadoh3" readonly/>
+        <button onclick="aderezos('orderContainerh3', 'hotDogPequeño')">SALSAS</button>
+        <div id="orderContainerh3" class="hotdog-container"></div>
+    </div>
+
+    <!-- Salchipapas -->
+    <h1>SALCHIPAPAS</h1>
+    <div class="menu-item">
+        <label for="tamano1">Salchipapa Pequeña</label>
+        <select id="tamano1" data-precio="1.00">
+            <option value="1.00">Salchipapa Pequeña</option>
+        </select>
+        <label for="cantidads1">CANTIDAD:</label> 
+        <input type="number" id="cantidads1" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultados1" readonly/>
+        <button onclick="aderezos('orderContainers1', 'salchipapaPequeña')">SALSAS</button>
+        <div id="orderContainers1" class="salchipapa-container"></div>
+    </div>
+
+    <div class="menu-item">
+        <label for="tamano2">Salchipapa Mediana</label>
+        <select id="tamano2" data-precio="1.50">
+            <option value="1.50">Salchipapa Mediana</option>
+        </select>
+        <label for="cantidads2">CANTIDAD:</label> 
+        <input type="number" id="cantidads2" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultados2" readonly/>
+        <button onclick="aderezos('orderContainers2', 'salchipapaMediana')">SALSAS</button>
+        <div id="orderContainers2" class="salchipapa-container"></div>
+    </div>
+
+    <div class="menu-item">
+        <label for="tamano3">Salchipapa Grande</label>
+        <select id="tamano3" data-precio="2.00">
+            <option value="2.00">Salchipapa Grande</option>
+        </select>
+        <label for="cantidads3">CANTIDAD:</label> 
+        <input type="number" id="cantidads3" placeholder="Ingresa un número" oninput="multiplicar()">
+        <label>Total:</label>
+        <input type="text" id="resultados3" readonly/>
+        <button onclick="aderezos('orderContainers3', 'salchipapaGrande')">SALSAS</button>
+        <div id="orderContainers3" class="salchipapa-container"></div>
+    </div>
+
+    <h1>MI PEDIDO:</h1>
+    <table id="tablaPedidos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Aderezos</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyPedidos"></tbody>
+    </table>
+    <button onclick="agregarPedido()">Agregar Pedido</button>
+
+    <script>
+          function multiplicar() {
+            const tiposDeHamburguesas2Fijo = parseFloat(document.getElementById('tiposDeHamburguesas2').value);
+            const cantidad2 = parseFloat(document.getElementById('cantidad2').value);
+            const total2 = cantidad2 * tiposDeHamburguesas2Fijo;
+            document.getElementById('resultado2').value = total2 || '';
+            
+           const tiposDeHamburguesas1Fijo = parseFloat(document.getElementById('tiposDeHamburguesas1').value);
+            const cantidad1 = parseFloat(document.getElementById('cantidad1').value);
+            const total1 = cantidad1 * tiposDeHamburguesas1Fijo;
+            document.getElementById('resultado1').value = total1 || '';
+            
+            
+                
+            const tiposDeHotdog1Fijo = parseFloat(document.getElementById('tiposDeHotdog1').value);
+            const cantidadh1 = parseFloat(document.getElementById('cantidadh1').value);
+            const totalh1 = cantidadh1 * tiposDeHotdog1Fijo;
+            document.getElementById('resultadoh1').value = totalh1 || '';
+            const tiposDeHotdog2Fijo = parseFloat(document.getElementById('tiposDeHotdog2').value);
+            const cantidadh2 = parseFloat(document.getElementById('cantidadh2').value);
+            const totalh2 = cantidadh2 * tiposDeHotdog2Fijo;
+            document.getElementById('resultadoh2').value = totalh2 || '';
+
+const tiposDeHotdog3Fijo = parseFloat(document.getElementById('tiposDeHotdog3').value);
+            const cantidadh3 = parseFloat(document.getElementById('cantidadh3').value);
+            const totalh3 = cantidadh3 * tiposDeHotdog3Fijo;
+            document.getElementById('resultadoh3').value = totalh3 || '';
+            
+            
+            const tamano1Fijo = parseFloat(document.getElementById('tamano1').value);
+            const cantidads1 = parseFloat(document.getElementById('cantidads1').value);
+            const totals1 = cantidads1 * tamano1Fijo;
+            document.getElementById('resultados1').value = totals1 || '';
+            
+            const tamano2Fijo = parseFloat(document.getElementById('tamano2').value);
+            const cantidads2 = parseFloat(document.getElementById('cantidads2').value);
+            const totals2 = cantidads2 * tamano2Fijo;
+            document.getElementById('resultados2').value = totals2 || '';
+            
+            const tamano3Fijo = parseFloat(document.getElementById('tamano3').value);
+            const cantidads3 = parseFloat(document.getElementById('cantidads3').value);
+            const totals3 = cantidads3 * tamano3Fijo;
+            document.getElementById('resultados3').value = totals3 || '';
+        }
+        
+               
+
+            
+
+        function aderezos(containerId) {
+            const container = document.getElementById(containerId);
+            const salsas = ['Ketchup', 'Mostaza', 'Mayonesa'];
+            container.innerHTML = ''; // Limpiar contenedor antes de agregar
+
+            salsas.forEach(salsa => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = salsa;
+                const label = document.createElement('label');
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(salsa));
+                container.appendChild(label);
+            });
+        }
+
+        function agregarPedido() {
+            const pedidos = [
+                { nombre: 'Hamburguesa Completa', cantidadId: 'cantidad1', precioId: 'resultado1', aderezosId: 'orderContainer1' },
+                { nombre: 'Hamburguesa Sencilla', cantidadId: 'cantidad2', precioId: 'resultado2', aderezosId: 'orderContainer2' },
+                { nombre: 'Hot Dog Grande', cantidadId: 'cantidadh1', precioId: 'resultadoh1', aderezosId: 'orderContainerh1' },
+                { nombre: 'Hot Dog Mediano', cantidadId: 'cantidadh2', precioId: 'resultadoh2', aderezosId: 'orderContainerh2' },
+                { nombre: 'Hot Dog Pequeño', cantidadId: 'cantidadh3', precioId: 'resultadoh3', aderezosId: 'orderContainerh3' },
+                { nombre: 'Salchipapa Pequeña', cantidadId: 'cantidads1', precioId: 'resultados1', aderezosId: 'orderContainers1' },
+                { nombre: 'Salchipapa Mediana', cantidadId: 'cantidads2', precioId: 'resultados2', aderezosId: 'orderContainers2' },
+                { nombre: 'Salchipapa Grande', cantidadId: 'cantidads3', precioId: 'resultados3', aderezosId: 'orderContainers3' },
+            ];
+
+            const tbody = document.getElementById('tbodyPedidos');
+            tbody.innerHTML = ''; // Limpiar tabla antes de agregar
+
+            pedidos.forEach(pedido => {
+                const cantidad = parseFloat(document.getElementById(pedido.cantidadId).value) || 0;
+                const precio = document.getElementById(pedido.precioId).value;
+                const aderezos = Array.from(document.querySelectorAll(`#${pedido.aderezosId} input:checked`)).map(input => input.value).join(', ');
+
+                if (cantidad > 0) {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).innerText = pedido.nombre;
+                    row.insertCell(1).innerText = cantidad;
+                    row.insertCell(2).innerText = precio;
+                    row.insertCell(3).innerText = aderezos || 'Ninguno';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
